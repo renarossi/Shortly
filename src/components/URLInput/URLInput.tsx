@@ -1,9 +1,9 @@
 import { FormEvent, ReactElement, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAnglesRight, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faGlobe, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import styled from '@emotion/styled';
 
-import { Colors, FontSizes, FontWeight, Spaces } from '../../styles/variables';
+import { Colors, FontSizes, FontWeight, Spaces, SpinEffect } from '../../styles/variables';
 
 const Input = styled.div`
   width: 100%;
@@ -41,6 +41,9 @@ const Input = styled.div`
     font-size: ${FontSizes.mSmall};
     transition: 0.4s ease;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
     &:hover {
       color: ${Colors.primary.white};
@@ -49,11 +52,16 @@ const Input = styled.div`
   }
 `;
 
+const Spinner = styled(FontAwesomeIcon)`
+  animation: ${SpinEffect} 1s ease infinite;
+`;
+
 interface URLInputProps {
+    loading?: boolean;
     onSubmit: (text: string) => void;
 }
 
-const URLInput = ({ onSubmit }: URLInputProps): ReactElement => {
+const URLInput = ({ onSubmit, loading }: URLInputProps): ReactElement => {
     const [inputValue, setInputValue] = useState<string>('');
 
     const submitURL = ():void => {
@@ -65,7 +73,8 @@ const URLInput = ({ onSubmit }: URLInputProps): ReactElement => {
             <FontAwesomeIcon className="input-icon" icon={ faGlobe } />
             <input type="text" placeholder="Enter your URL" value={inputValue} onChange={(event: FormEvent<HTMLInputElement>) => setInputValue(event.currentTarget.value)} />
             <button onClick={submitURL}>
-                <FontAwesomeIcon className="button-icon" icon={faAnglesRight} />
+                { !loading && (<FontAwesomeIcon icon={faAnglesRight} />)}
+                { loading && (<Spinner icon={faSpinner} />)}
             </button>
         </Input>
     )

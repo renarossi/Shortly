@@ -1,3 +1,5 @@
+import { keyframes } from '@emotion/react';
+
 export const Colors = {
     primary: {
         white: '#fff',
@@ -29,3 +31,8 @@ export const FontWeight = {
     regular: 400,
     bold: 500
 };
+
+export const SpinEffect = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
