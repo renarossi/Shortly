@@ -3,7 +3,8 @@ export const Colors = {
         white: '#fff',
         darkGray: '#a9a9a9',
         lightBlue: '#dff6ff',
-        darkBlue: '#06283D'
+        darkBlue: '#06283D',
+        darkRed: '#A30000'
     }
 };
 

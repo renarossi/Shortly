@@ -10,7 +10,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 ${Spaces.large};
+  padding: ${Spaces.zero} ${Spaces.large};
 `;
 
 function App() {
