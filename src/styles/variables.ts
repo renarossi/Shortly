@@ -12,6 +12,7 @@ export const Colors = {
 
 export const Spaces = {
     zero: '0',
+    xxSmall: '2px',
     xSmall: '6px',
     small: '12px',
     medium: '24px',
@@ -21,6 +22,7 @@ export const Spaces = {
 };
 
 export const FontSizes = {
+    xSmall: '12px',
     mSmall: '16px',
     medium: '20px',
     mLarge: '22px',
