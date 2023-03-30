@@ -2,6 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import Hero from './components/Hero/Hero';
+import Container from './components/Container/Container';
+
 import { Spaces } from './styles/variables';
 
 const Main = styled.main`
@@ -15,6 +17,7 @@ function App() {
     return (
         <Main>
             <Hero />
+            <Container />
         </Main>
     );
 }

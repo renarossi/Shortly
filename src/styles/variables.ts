@@ -14,6 +14,7 @@ export const Spaces = {
     medium: '24px',
     mLarge: '32px',
     large: '48px',
+    xLarge: '64px'
 };
 
 export const FontSizes = {
@@ -21,4 +22,9 @@ export const FontSizes = {
     medium: '20px',
     mLarge: '22px',
     large: '70px'
+};
+
+export const FontWeight = {
+    regular: 400,
+    bold: 500
 };
