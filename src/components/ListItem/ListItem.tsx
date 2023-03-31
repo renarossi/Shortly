@@ -11,6 +11,8 @@ interface CopyLabelProps {
 const Li = styled.li`
   margin: ${Spaces.xSmall} ${Spaces.zero};
   display: flex;
+  flex-direction: row;
+  align-items: center;
   cursor: pointer;
   color: ${Colors.primary.darkBlue};
 `;

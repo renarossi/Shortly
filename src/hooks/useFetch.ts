@@ -11,6 +11,7 @@ export const UseFetch = (): FetchResponse => {
 
     const shortenURL = async (url: string) => {
         setLoading(true);
+        setData(undefined);
         try {
             const apiResponse = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
             if (apiResponse.ok) {
