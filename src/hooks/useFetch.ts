@@ -13,11 +13,16 @@ export const UseFetch = (): FetchResponse => {
         setLoading(true);
         try {
             const apiResponse = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
-            const json = await apiResponse.json();
-            setStatus(apiResponse.status);
-            setStatusText(apiResponse.statusText);
-            setData(json);
-        } catch (error) {
+            if (apiResponse.ok) {
+                const json = await apiResponse.json();
+                setStatus(apiResponse.status);
+                setStatusText(apiResponse.statusText);
+                setData(json);
+            } else {
+                const json = await apiResponse.json();
+                setError(json);
+            }
+        } catch (error: any) {
             setError(error);
         }
         setLoading(false);

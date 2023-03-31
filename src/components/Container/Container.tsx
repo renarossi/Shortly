@@ -40,7 +40,9 @@ const Container: FC = () => {
     }
 
     useEffect(() => {
-        console.log(error);
+        if (error) {
+            setErrorMsg(error.error);
+        }
     }, [error]);
 
     return (

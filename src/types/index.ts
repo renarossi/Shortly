@@ -14,11 +14,18 @@ export interface ShrtcodeAPIResponse {
     result: ShrtcodeResult;
 }
 
+export interface ShrtcodeAPIError {
+    disallowed_reason: string;
+    error: string;
+    error_code: number;
+    ok: boolean;
+}
+
 export interface FetchResponse {
     status: number;
     statusText: string;
     data?: ShrtcodeAPIResponse;
-    error: any;
+    error: ShrtcodeAPIError;
     loading: boolean;
     shortenURL: (url: string) => void;
 }
