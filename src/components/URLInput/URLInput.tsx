@@ -1,4 +1,4 @@
-import { FormEvent, ReactElement, useState } from 'react';
+import { FormEvent, KeyboardEvent, ReactElement, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesRight, faGlobe, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import styled from '@emotion/styled';
@@ -68,10 +68,16 @@ const URLInput = ({ onSubmit, loading }: URLInputProps): ReactElement => {
         onSubmit(inputValue);
     }
 
+    const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            submitURL();
+        }
+    }
+
     return (
         <Input>
             <FontAwesomeIcon className="input-icon" icon={ faGlobe } />
-            <input type="text" placeholder="Enter your URL" value={inputValue} onChange={(event: FormEvent<HTMLInputElement>) => setInputValue(event.currentTarget.value)} />
+            <input type="text" placeholder="Enter your URL" value={inputValue} onChange={(event: FormEvent<HTMLInputElement>) => setInputValue(event.currentTarget.value)} onKeyDown={handleKeyDown} />
             <button onClick={submitURL}>
                 { !loading && (<FontAwesomeIcon icon={faAnglesRight} />)}
                 { loading && (<Spinner icon={faSpinner} />)}

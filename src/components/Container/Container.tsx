@@ -15,7 +15,7 @@ interface SectionInterface {
 const Section = styled.section<SectionInterface>`
   position: relative;
   width: calc(100% - ${Spaces.xLarge});
-  height: ${props => props.open ? '350px' : '35px'};
+  max-height: ${props => props.open ? '450px' : '35px'};
   background: ${Colors.primary.white};
   padding: ${Spaces.medium} ${Spaces.mLarge};
   overflow: hidden;
@@ -28,10 +28,11 @@ const Container: FC = () => {
     const { data, loading, shortenURL, error} = UseFetch();
 
     const handleURLSubmit = (value: string): void => {
+        setErrorMsg(undefined);
         if (value) {
             shortenURL(value);
         } else {
-            setErrorMsg('Oops! We can\'t do it with no URL :/');
+            setErrorMsg('Oops! We can\'t do it with no URL.');
         }
     }
 
@@ -49,7 +50,7 @@ const Container: FC = () => {
         <Section open={isDefined(data) || isDefined(errorMsg)}>
             <URLInput onSubmit={handleURLSubmit} loading={loading} />
             { errorMsg && (<ErrorBlock error={errorMsg} />)}
-            { data && (<LinkBlock shortenedLinks={data.result} />)}
+            { data && !errorMsg && (<LinkBlock shortenedLinks={data.result} />)}
         </Section>
     )
 };

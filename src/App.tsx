@@ -11,6 +11,8 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   padding: ${Spaces.zero} ${Spaces.large};
+  width: 100%;
+  max-width: 530px;
 `;
 
 function App() {
