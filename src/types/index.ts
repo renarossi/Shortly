@@ -9,10 +9,15 @@ export interface ShrtcodeResult {
     original_link: string;
 }
 
+export interface ShrtcodeAPIResponse {
+    ok: boolean;
+    result: ShrtcodeResult;
+}
+
 export interface FetchResponse {
     status: number;
     statusText: string;
-    data?: ShrtcodeResult;
+    data?: ShrtcodeAPIResponse;
     error: any;
     loading: boolean;
     shortenURL: (url: string) => void;

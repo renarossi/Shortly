@@ -17,7 +17,7 @@ const Input = styled.div`
     width: 80%;
     font-size: ${FontSizes.medium};
     font-weight: ${FontWeight.bold};
-    padding-left: ${Spaces.mLarge};
+    padding-left: ${Spaces.small};
     border: none;
     
     &::placeholder {

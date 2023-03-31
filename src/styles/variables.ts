@@ -31,7 +31,8 @@ export const FontSizes = {
 
 export const FontWeight = {
     regular: 400,
-    bold: 500
+    bold: 500,
+    extraBold: 700
 };
 
 export const SpinEffect = keyframes`

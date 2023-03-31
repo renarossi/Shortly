@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Colors, FontSizes, Spaces } from '../../styles/variables';
+import { Colors, FontSizes, FontWeight, Spaces } from '../../styles/variables';
 
 
 interface CopyLabelProps {
@@ -20,6 +20,7 @@ const Span = styled.span`
   padding: ${Spaces.zero} ${Spaces.xSmall};
   margin-left: ${Spaces.small};
   transition: all 0.4s ease;
+  font-size: ${FontSizes.xSmall};
   
   &:hover {
     color: ${Colors.primary.white};
@@ -27,9 +28,14 @@ const Span = styled.span`
   }
 `;
 
+const Strong = styled.strong`
+  font-weight: ${FontWeight.extraBold};
+  text-transform: capitalize;
+`;
+
 const CopyLabel = styled.span<CopyLabelProps>`
   transition: all 1s ease;
-  margin-left: auto;
+  margin-left: ${Spaces.medium};
   background: ${Colors.primary.darkBlue};
   color: ${Colors.primary.white};
   padding: ${Spaces.xxSmall};
@@ -38,20 +44,24 @@ const CopyLabel = styled.span<CopyLabelProps>`
   opacity: ${(props) => props.active ? 1 : 0};
 `;
 
-const ListItem = (): ReactElement => {
+interface ListItemProps {
+    linkName: string;
+    linkValue: string;
+}
+
+const ListItem = ({ linkName, linkValue }: ListItemProps): ReactElement => {
     const [showCopyLabel, setShowCopyLabel] = useState(false);
-    const link = 'shrtco.de/KCveN';
 
     const copyToClipboard = ():void => {
         setShowCopyLabel(true);
-        navigator.clipboard.writeText(link);
+        navigator.clipboard.writeText(linkValue);
         setTimeout(() => setShowCopyLabel(false), 1000);
     }
 
     return (
         <Li>
-            <strong>Short Link:</strong>
-            <Span onClick={copyToClipboard}>{ link }</Span>
+            <Strong>{ linkName.replace('_', ' ') }</Strong>
+            <Span onClick={copyToClipboard}>{ linkValue }</Span>
             <CopyLabel active={showCopyLabel}>Copied!</CopyLabel>
         </Li>
     )

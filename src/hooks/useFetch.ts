@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { FetchResponse, ShrtcodeResult } from '../types';
+import { FetchResponse, ShrtcodeAPIResponse } from '../types';
 
 export const UseFetch = (): FetchResponse => {
     const [status, setStatus] = useState<number>(0);
     const [statusText, setStatusText] = useState<string>('');
-    const [data, setData] = useState<ShrtcodeResult>();
+    const [data, setData] = useState<ShrtcodeAPIResponse>();
     const [error, setError] = useState<any>();
     const [loading, setLoading] = useState<boolean>(false);
 

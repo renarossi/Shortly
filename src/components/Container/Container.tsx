@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 
 import URLInput from '../URLInput/URLInput';
@@ -6,6 +6,7 @@ import URLInput from '../URLInput/URLInput';
 import { Colors, Spaces } from '../../styles/variables';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import LinkBlock from '../LinkBlock/LinkBlock';
+import { UseFetch } from '../../hooks/useFetch';
 
 interface SectionInterface {
     open?: boolean;
@@ -14,7 +15,7 @@ interface SectionInterface {
 const Section = styled.section<SectionInterface>`
   position: relative;
   width: calc(100% - ${Spaces.xLarge});
-  height: ${props => props.open ? '240px' : '35px'};
+  height: ${props => props.open ? '350px' : '35px'};
   background: ${Colors.primary.white};
   padding: ${Spaces.medium} ${Spaces.mLarge};
   overflow: hidden;
@@ -24,22 +25,29 @@ const Section = styled.section<SectionInterface>`
 
 const Container: FC = () => {
     const [errorMsg, setErrorMsg] = useState<string | undefined>();
-    const [openDrawer, setOpenDrawer] = useState<boolean>(true);
+    const { data, loading, shortenURL, error} = UseFetch();
 
     const handleURLSubmit = (value: string): void => {
         if (value) {
-            console.log(value);
+            shortenURL(value);
         } else {
-            setOpenDrawer(true);
             setErrorMsg('Oops! We can\'t do it with no URL :/');
         }
     }
 
+    const isDefined = (variable: any):boolean => {
+        return typeof variable !== 'undefined';
+    }
+
+    useEffect(() => {
+        console.log(error);
+    }, [error]);
+
     return (
-        <Section open={openDrawer} >
-            <URLInput onSubmit={handleURLSubmit} />
+        <Section open={isDefined(data) || isDefined(errorMsg)}>
+            <URLInput onSubmit={handleURLSubmit} loading={loading} />
             { errorMsg && (<ErrorBlock error={errorMsg} />)}
-            <LinkBlock />
+            { data && (<LinkBlock shortenedLinks={data.result} />)}
         </Section>
     )
 };
