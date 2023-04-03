@@ -23,7 +23,7 @@ interface LinkBlockProps {
 
 const LinkBlock = ({ shortenedLinks }: LinkBlockProps) => {
     return (
-        <Section>
+        <Section data-testid="link-block">
             <List>
                 { shortenedLinks && Object.entries(shortenedLinks).map(([key, value]) => <ListItem key={key} linkName={key} linkValue={value} />)}
             </List>
