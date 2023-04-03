@@ -43,9 +43,9 @@ const ShortlysContainer = ({ history }: ShortlysContainerProps) => {
     return(
         <>
             <LinkWrapper>
-                {history && history.map((shortly) => <Link key={shortly.code} active={selectedShortly?.code === shortly.code} onClick={() => setSelectedShortly(shortly)}>{ shortly.code }</Link>)}
+                {history && history.map((shortly) => <Link data-testid={`history-link-${shortly.code}`} key={shortly.code} active={selectedShortly?.code === shortly.code} onClick={() => setSelectedShortly(shortly)}>{ shortly.code }</Link>)}
             </LinkWrapper>
-            <LinkWrapper>
+            <LinkWrapper data-testid="history-wrapper">
                 { !history && (<EmptyMessage>Create New Shortlys to see them here.</EmptyMessage>)}
                 { selectedShortly && Object.entries(selectedShortly).map(([key, value]) => <Shortly key={key} shortlyKey={key} shortlyValue={value} />)}
             </LinkWrapper>

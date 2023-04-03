@@ -1,6 +1,6 @@
 import React from 'react';
 import URLInput from './URLInput';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 
 test('Renders Input initial state', () => {
    render(<URLInput onSubmit={(text) => console.log(text)} loading={false} />);
@@ -20,7 +20,10 @@ test('Input submit text to parent on click', () => {
     expect(screen.getByTestId('submit-icon')).toBeInTheDocument();
     expect(screen.queryByTestId('loading-icon')).not.toBeInTheDocument();
     fireEvent.change(screen.getByTestId('url-input'), {target: {value: 'http://www.test.com'}});
-    screen.getByTestId('submit-button').click();
+
+    act(() => {
+        screen.getByTestId('submit-button').click();
+    });
     expect(inputText).toBe('http://www.test.com');
 
     rerender(<URLInput onSubmit={updateInputText} loading={true} />);

@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 
 beforeEach(() => {
     let clipboardData = '';
@@ -12,6 +12,7 @@ beforeEach(() => {
             () => {return clipboardData}
         ),
     };
+    // @ts-ignore
     global.navigator.clipboard = mockClipboard;
 });
 
@@ -23,7 +24,11 @@ test('Renders ListItem', () => {
 
 test('Copy to clipboard', () => {
     render(<ListItem linkName={'full_share_link'} linkValue={'https://shrtco.de/share/MBkTCi'}/>);
-    screen.getByTestId('link-value').click();
+
+    act(() => {
+        screen.getByTestId('link-value').click();
+    });
+
     expect(screen.getByText('Copied!')).toBeInTheDocument();
     expect(navigator.clipboard.readText()).toBe('https://shrtco.de/share/MBkTCi')
     expect(navigator.clipboard.writeText).toBeCalledTimes(1);
