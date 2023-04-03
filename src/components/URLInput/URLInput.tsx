@@ -77,10 +77,10 @@ const URLInput = ({ onSubmit, loading }: URLInputProps): ReactElement => {
     return (
         <Input>
             <FontAwesomeIcon className="input-icon" icon={ faGlobe } />
-            <input type="text" placeholder="Enter your URL" value={inputValue} onChange={(event: FormEvent<HTMLInputElement>) => setInputValue(event.currentTarget.value)} onKeyDown={handleKeyDown} />
-            <button onClick={submitURL}>
-                { !loading && (<FontAwesomeIcon icon={faAnglesRight} />)}
-                { loading && (<Spinner icon={faSpinner} />)}
+            <input data-testid="url-input" type="text" placeholder="Enter your URL" value={inputValue} onChange={(event: FormEvent<HTMLInputElement>) => setInputValue(event.currentTarget.value)} onKeyDown={handleKeyDown} />
+            <button onClick={submitURL} data-testid="submit-button">
+                { !loading && (<FontAwesomeIcon data-testid="submit-icon" icon={faAnglesRight} />)}
+                { loading && (<Spinner icon={faSpinner} data-testid="loading-icon" />)}
             </button>
         </Input>
     )
