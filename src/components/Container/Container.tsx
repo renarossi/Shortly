@@ -9,6 +9,7 @@ import LinkBlock from '../LinkBlock/LinkBlock';
 import { UseFetch } from '../../hooks/useFetch';
 import { ShrtcodeResult } from '../../types';
 import ShortlysContainer from '../ShortlysContainer/ShortlysContainer';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface SectionInterface {
     open?: boolean;
@@ -38,6 +39,7 @@ const Container: FC = () => {
     const [errorMsg, setErrorMsg] = useState<string | undefined>();
     const [shortlyHistory, setShortlyHistory] = useState<ShrtcodeResult[] | undefined>();
     const { data, loading, shortenURL, error} = UseFetch();
+    const { setLocalStorage, readLocalStorage } = useLocalStorage();
 
     const handleURLSubmit = (value: string): void => {
         setErrorMsg(undefined);
@@ -66,9 +68,20 @@ const Container: FC = () => {
                 }
 
                 return [data.result];
-            })
+            });
         }
     }, [data]);
+
+    useEffect(() => {
+        if (shortlyHistory) {
+            setLocalStorage('shortlyHistory', shortlyHistory);
+        } else {
+            const value = readLocalStorage('shortlyHistory');
+            if (value) {
+                setShortlyHistory(value);
+            }
+        }
+    }, [shortlyHistory, setLocalStorage, readLocalStorage]);
 
     return (
         <>
