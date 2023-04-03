@@ -26,7 +26,7 @@ const Shortly = ( { shortlyKey, shortlyValue }: ShortlyProps) => {
     return (
         <ShortlyContent>
             <strong>{ shortlyKey.replaceAll('_', ' ') }:</strong>
-            <ShortlyLink onClick={copyToClipboard}>{ shortlyValue }</ShortlyLink>
+            <ShortlyLink data-testid="shortly-value" onClick={copyToClipboard}>{ shortlyValue }</ShortlyLink>
         </ShortlyContent>
     )
 };
