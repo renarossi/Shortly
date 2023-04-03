@@ -11,7 +11,7 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   padding: ${Spaces.zero} ${Spaces.large};
-  width: 100%;
+  width: calc(100% - 2 * ${Spaces.large});
   max-width: 530px;
 `;
 

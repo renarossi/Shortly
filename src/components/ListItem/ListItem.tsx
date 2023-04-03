@@ -15,6 +15,11 @@ const Li = styled.li`
   align-items: center;
   cursor: pointer;
   color: ${Colors.primary.darkBlue};
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const Span = styled.span`
@@ -23,6 +28,10 @@ const Span = styled.span`
   margin-left: ${Spaces.small};
   transition: all 0.4s ease;
   font-size: ${FontSizes.xSmall};
+
+  @media (max-width: 600px) {
+    margin-left: ${Spaces.zero};
+  }
   
   &:hover {
     color: ${Colors.primary.white};
