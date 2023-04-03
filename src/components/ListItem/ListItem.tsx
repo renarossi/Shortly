@@ -72,7 +72,7 @@ const ListItem = ({ linkName, linkValue }: ListItemProps): ReactElement => {
     return (
         <Li>
             <Strong>{ linkName.replaceAll('_', ' ') }</Strong>
-            <Span onClick={copyToClipboard}>{ linkValue }</Span>
+            <Span data-testid="link-value" onClick={copyToClipboard}>{ linkValue }</Span>
             <CopyLabel active={showCopyLabel}>Copied!</CopyLabel>
         </Li>
     )
