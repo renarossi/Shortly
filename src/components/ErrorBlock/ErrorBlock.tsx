@@ -28,7 +28,7 @@ interface ErrorBlockProps {
 const ErrorBlock = ({ error }: ErrorBlockProps): ReactElement  => {
     return (
         <ErrorBox>
-            <BigIcon>=/</BigIcon>
+            <BigIcon data-testid={'error-icon'}>=/</BigIcon>
             <p>{ error }</p>
         </ErrorBox>
     )
